@@ -1,11 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
+    <nav>
+        <div class="icon">Library-Management-System</div>
+        <ul id="menuList">
+            <li><a hr="#">Home</a></li>
+            <li><a hr="#">Student</a></li>
+            <li><a hr="#">Admin</a></li>
+            <li><a hr="#">Contact</a></li>
+        </ul>
+        <div class="menu">
+            <i class="fa-solid fa-bars" onclick="toggleMenu()"></i>
+        </div>
+    </nav>
+    <script src="https://kit.fontawesome.com/b762949252.js" crossorigin="anonymous"></script>
+    <script>
+        let menuList = document.getElementById("menuList")
+        menuList.style.maxHeight = "0px";
+
+        function toggleMenu() {
+            if (menuList.style.maxHeight == "0px") {
+                menuList.style.maxHeight = "300px"
+            }
+            else {
+                menuList.style.maxHeight = "0px"
+            }
+        }
+    </script>
+    <div class="main">
+        <div class="ani">
+            <div class='console-container'><span id='text'></span>
+                <div class='console-underscore' id='console'>&#95;</div>
+            </div>
+        </div>
+    </div>
+    <script src="/script.js"></script>
+        <footer>
+            <h1>About Us</h1>
+            <div class="fc">
+            <div class="fc1"><pre><h3>Who We Are         </h3>Library-Management-System provides easy, accessible digital library services.</pre></div>           
+            <div class="fc1"><pre><h3>Mission            </h3>To handle resources available anytime, anywhere.</pre></div>
+            <div class="fc1"><pre><h3>Services           </h3>Online catalog search, account management and notifications.</pre> </div>
+            <div class="fc1"><pre><h3>Community Impact   </h3>Enriching the community with convenient educational resources.</pre></div>      
+            </div>
+        </footer>
     
 </body>
+
 </html>
