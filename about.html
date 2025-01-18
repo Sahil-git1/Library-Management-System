@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LibraryPro - About Us</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #121212;
+            --bg-secondary: #1E1E1E;
+            --text-primary: #FFFFFF;
+            --text-secondary: #E0E0E0;
+            --accent-color: #6B46C1;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .bg-glass {
+            background: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+        }
+
+        .team-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .team-card:hover {
+            transform: rotateY(10deg) translateY(-15px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .floating-element {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .back-arrow {
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    justify-items: center;
+    align-items: center;
+    list-style: none;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.882);
+    height: 5rem;
+    width: 100vw;
+}
+
+.nLeft {
+    padding-right: 10em;
+}
+
+.nRight>ul {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1rem;
+    margin-right: 2rem;
+    padding: 0.2em;
+    font-weight: 100;
+    flex-direction: row;
+    list-style: none;
+}
+
+.nRight>ul>li {
+    margin-left: 0.5em;
+    margin-right: 0.5rem;
+    height: 1.3em;
+}
+
+.nRight ul li::before {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.882);
+    ;
+    transition: border-bottom 0.3s ease;
+}
+
+.nRight ul >li:hover {
+    cursor: pointer;
+    border-bottom: 1px solid white;
+}
+
+img {
+    width: 3em;
+    height: 6em;
+}
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col">
+    <nav class="nav">
+        <span class="nLeft"><img src="q.svg" alt=""></span>
+        <span class="nRight">
+            <ul>
+                <li><a href="./index.html" style="text-decoration: none;color: inherit; ">Home</a> </li>
+                <li><a href="./student/public/x2.html" style="text-decoration: none;color: inherit; ">Books</a> </li>
+                <!-- <li>|</li> -->
+                <li><a href="./Admin-b/Admin.html" style="text-decoration: none;color: inherit; ">Admin</a> </li>
+                <!-- <li>|</li> -->
+                <!-- <li>|</li> -->
+                <li><a href="./about.html" style="text-decoration: none;color: inherit; border-bottom: 1px solid white ;">About</a> </li>
+            </ul>
+        </span>
+    </nav>
+    <div class="absolute top-6 left-6">
+        <a href="./index.html" class="group back-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8 text-purple-400 group-hover:text-purple-600 transition-colors" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+        </a>
+    </div>
+
+    <div class="container mx-auto px-4 py-12">
+        <header class="text-center mb-16 relative">
+            <div class="absolute -top-10 left-0 w-full opacity-20 floating-element">
+                <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" class="w-full">
+                    <path fill="var(--accent-color)" fill-opacity="0.3"
+                        d="M0,160L48,176C96,192,192,224,288,240C384,256,480,256,576,245.3C672,235,768,213,864,197.3C960,181,1056,171,1152,170.7C1248,171,1344,181,1392,186.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320L192,320L96,320L0,320Z">
+                    </path>
+                </svg>
+            </div>
+            <h1 class="text-5xl font-extrabold mb-4 text-purple-300 relative z-10">LibraryPro</h1>
+            <p class="text-xl text-purple-200 tracking-wide">Transforming Knowledge, Inspiring Connections</p>
+        </header>
+
+        <section class="mb-16 bg-glass rounded-xl p-8">
+            <h2 class="text-3xl font-bold mb-6 text-purple-300">Our Mission</h2>
+            <p class="text-lg text-purple-100 leading-relaxed">
+                LibraryPro revolutionizes digital library management by creating intelligent, user-centric platforms
+                that bridge technology, learning, and community engagement.
+            </p>
+        </section>
+
+        <section>
+            <h2 class="text-3xl font-bold mb-10 text-purple-300">Our Innovative Team</h2>
+            <div id="teamGrid" class="grid md:grid-cols-3 gap-10">
+                <!-- Team members dynamically rendered -->
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const teamMembers = [
+            {
+                name: "Samar Thakur",
+                role: "",
+                bio: "Front End design."
+            },
+            {
+                name: "Sahil Chauhan",
+                role: "",
+                bio: "Back End."
+            },
+        ];
+
+        function renderTeamMembers() {
+            const teamGrid = document.getElementById('teamGrid');
+            teamMembers.forEach(member => {
+                const card = document.createElement('div');
+                card.className = 'team-card bg-gray-900 p-7 rounded-2xl shadow-2xl text-center transform hover:scale-105 transition-all duration-300';
+                card.innerHTML = `
+                    <h3 class="text-xl font-bold mb-2 text-purple-300">${member.name}</h3>
+                    <p class="text-purple-200 mb-3 italic">${member.role}</p>
+                    <p class="text-purple-100">${member.bio}</p>
+                `;
+                teamGrid.appendChild(card);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', renderTeamMembers);
+    </script>
+</body>
+
+</html>

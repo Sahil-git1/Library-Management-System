@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Book Management</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #2d3436;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        .nav {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            justify-items: center;
+            align-items: center;
+            list-style: none;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.882);
+            height: 5rem;
+            width: 100vw;
+        }
+
+        .nLeft {
+            padding-right: 10em;
+        }
+
+        .nRight>ul {
+            display: flex;
+            justify-content: space-evenly;
+            gap: 1rem;
+            margin-right: 2rem;
+            padding: 0.2em;
+            font-weight: 100;
+            flex-direction: row;
+            list-style: none;
+        }
+
+        .nRight>ul>li {
+            margin-left: 0.5em;
+            margin-right: 0.5rem;
+            height: 1.3em;
+        }
+
+        .nRight ul li::before {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.882);
+            ;
+            transition: border-bottom 0.3s ease;
+        }
+
+        .nRight ul>li:hover {
+            cursor: pointer;
+            border-bottom: 1px solid white;
+        }
+
+        img {
+            width: 3em;
+            height: 6em;
+        }
+
+        /* nav */
+
+
+
+
+        /* footer {
+    position: fixed;
+    bottom: 0;
+    background-color: #2d2d2d;
+    color: rgba(245, 245, 245, 0.867);
+    height: 20vh;
+    width: 100vw;
+} */
+
+        .hero {
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0.882);
+            height: 90vh;
+            width: 100vw;
+        }
+
+        .hRight {
+            box-sizing: border-box;
+            color: white;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin: auto;
+            background-color: rgba(0, 0, 0, 0.882);
+            min-width: 100vw;
+        }
+
+        .container2 {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 2.75rem;
+            letter-spacing: -0.5px;
+            color: #2d3436;
+            margin-bottom: 0.5rem;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.75rem;
+            color: #FF9900;
+            margin: 2rem 0 1.5rem;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .header2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #edf2f7;
+        }
+
+        .header2-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .header2 button {
+            background-color: #FF9900;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            color: white;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header2 button:hover {
+            background-color: #FFCC00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .search-section2 {
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .search-bar2 {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .search-bar2 input {
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid #edf2f7;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        .filter-section2 {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .filter-select2 {
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid #edf2f7;
+            font-size: 1rem;
+            min-width: 150px;
+        }
+
+        .table-container2 {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #2d3436;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.5px;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #edf2f7;
+            font-size: 0.95rem;
+        }
+
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .status-available {
+            background-color: #DEF7EC;
+            color: #057A55;
+        }
+
+        .status-borrowed {
+            background-color: #FEF3C7;
+            color: #D97706;
+        }
+
+        .status-unavailable {
+            background-color: #FDE8E8;
+            color: #E02424;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-edit {
+            background-color: #FF9900;
+            color: white;
+        }
+
+        .btn-delete {
+            background-color: #FDE8E8;
+            color: #E02424;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            filter: brightness(95%);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: modalZoom 0.3s ease-out;
+            margin: 5% auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid #edf2f7;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #FF9900;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row>div {
+            flex: 1;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes modalZoom {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        #import-modal .modal-content {
+            max-width: 400px;
+        }
+
+        .file-upload {
+            border: 2px dashed #edf2f7;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+
+        .file-upload:hover {
+            border-color: #FF9900;
+        }
+
+        .file-upload i {
+            font-size: 2rem;
+            color: #FF9900;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <span class="nLeft"><img src="../../q.svg" alt="image"></span>
+        <span class="nRight">
+            <ul>
+                <li><a href="../../index.html" style="text-decoration: none;color: inherit; ">Home</a> </li>
+                <li><a href="../../Admin-b/Admin.html" style="text-decoration: none;color: inherit; ">Admin</a> </li>
+                <!-- <li>|</li> -->
+                <li><a href="./x2.html"
+                        style="text-decoration: none;color: inherit; border-bottom: 1px solid white ;">Books Control</a>
+                </li>
+                <!-- <li>|</li> -->
+                <li><a href="../../EX2/a.html" style="text-decoration: none;color: inherit; ">Transactions</a> </li>
+                <!-- <li>|</li> -->
+
+            </ul>
+        </span>
+    </nav>
+    <div class="container2">
+        <div class="header2">
+            <h1>Library Book Management</h1>
+            <div class="header2-buttons">
+
+                <button onclick="openAddBookModal()">
+                    <i class="fas fa-plus"></i> Add New Book
+                </button>
+            </div>
+        </div>
+
+        <h3>Book Catalog</h3>
+
+        <div class="search-section2">
+            <div class="search-bar2">
+                <input type="text" id="search-bar2" placeholder="Search books by title, author, or ISBN..."
+                    oninput="filterBooks()">
+            </div>
+            <div class="filter-section2">
+                <select class="filter-select2" id="category-filter" onchange="filterBooks()">
+                    <option value="">All Categories</option>
+                    <option value="fiction">Fiction</option>
+                    <option value="non-fiction">Non-Fiction</option>
+                    <option value="science">Science</option>
+                    <option value="technology">Technology</option>
+                </select>
+                <select class="filter-select2" id="status-filter" onchange="filterBooks()">
+                    <option value="">All Status</option>
+                    <option value="available">Available</option>
+                    <option value="borrowed">Borrowed</option>
+                    <option value="unavailable">Unavailable</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="table-container2">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>ISBN</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Stock</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="book-list">
+                    <!-- Books will be displayed here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Add/Edit Book Modal -->
+        <div id="book-modal" class="modal">
+            <div class="modal-content">
+                <h2 id="modalTitle">Add New Book</h2>
+                <form id="book-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bookTitle">Title</label>
+                            <input type="text" id="bookTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bookAuthor">Author</label>
+                            <input type="text" id="bookAuthor" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bookISBN">ISBN</label>
+                            <input type="text" id="bookISBN" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bookCategory">Category</label>
+                            <select id="bookCategory" required>
+                                <option value="fiction">Fiction</option>
+                                <option value="non-fiction">Non-Fiction</option>
+                                <option value="science">Science</option>
+                                <option value="technology">Technology</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bookStatus">Status</label>
+                            <select id="bookStatus" required>
+                                <option value="available">Available</option>
+                                <option value="unavailable">Unavailable</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="bookStock">Stock</label>
+                            <input type="number" id="bookStock" min="0" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookDescription">Description</label>
+                        <textarea id="bookDescription" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" style="margin: 1em;max-width: 100%;" onclick="saveBook()"
+                            class="btn btn-edit">Save</button>
+                        <button type="button" style="max-width: 100% ;min-height: 2em;"
+                            onclick="closeModal('book-modal')" class="btn btn-delete">Cancel</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class LibraryManagement {
+            constructor() {
+                this.books = [];
+                this.currentBookId = null;
+                this.API_URL = 'http://localhost:5000/api/books';
+                this.initializeDOM();
+            }
+
+            initializeDOM() {
+                // Modal and form elements
+                this.bookModal = document.getElementById('book-modal');
+                this.modalTitle = document.getElementById('modalTitle');
+                this.bookForm = document.getElementById('book-form');
+
+                // Form inputs
+                this.titleInput = document.getElementById('bookTitle');
+                this.authorInput = document.getElementById('bookAuthor');
+                this.isbnInput = document.getElementById('bookISBN');
+                this.categoryInput = document.getElementById('bookCategory');
+                this.statusInput = document.getElementById('bookStatus');
+                this.stockInput = document.getElementById('bookStock');
+                this.descriptionInput = document.getElementById('bookDescription');
+
+                // Add event listeners
+                this.addEventListeners();
+
+                // Fetch initial books
+                this.fetchBooks();
+            }
+
+            addEventListeners() {
+                // Search and filter events
+                document.getElementById('search-bar2').addEventListener('input', this.filterBooks.bind(this));
+                document.getElementById('category-filter').addEventListener('change', this.filterBooks.bind(this));
+                document.getElementById('status-filter').addEventListener('change', this.filterBooks.bind(this));
+
+                // Add book modal trigger
+                document.querySelector('[onclick="openAddBookModal()"]').addEventListener('click', this.openAddBookModal.bind(this));
+
+                // Form submission
+                this.bookForm.addEventListener('submit', this.handleBookSubmit.bind(this));
+
+                // Modal close functionality
+                window.addEventListener('click', (event) => {
+                    if (event.target.className === 'modal') {
+                        this.closeModal(event.target.id);
+                    }
+                });
+            }
+
+            openAddBookModal() {
+                this.currentBookId = null;
+                this.modalTitle.textContent = 'Add New Book';
+                this.bookForm.reset();
+                this.bookModal.style.display = 'block';
+            }
+
+            async handleBookSubmit(event) {
+                event.preventDefault();
+
+                if (!this.validateForm()) return;
+
+                const formData = this.getFormData();
+
+                try {
+                    if (this.currentBookId) {
+                        await this.updateBook(this.currentBookId, formData);
+                    } else {
+                        await this.addBook(formData);
+                    }
+                    this.closeModal('book-modal');
+                    this.fetchBooks();
+                } catch (error) {
+                    console.error('Error saving book:', error);
+                    alert('Failed to save book. Please try again.');
+                }
+            }
+
+            validateForm() {
+                const requiredFields = [
+                    this.titleInput,
+                    this.authorInput,
+                    this.isbnInput,
+                    this.stockInput
+                ];
+
+                let isValid = true;
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        field.classList.add('error');
+                        isValid = false;
+                    } else {
+                        field.classList.remove('error');
+                    }
+                });
+
+                return isValid;
+            }
+
+            getFormData() {
+                return {
+                    title: this.titleInput.value.trim(),
+                    author: this.authorInput.value.trim(),
+                    isbn: this.isbnInput.value.trim(),
+                    category: this.categoryInput.value,
+                    status: this.statusInput.value,
+                    stock: parseInt(this.stockInput.value),
+                    description: this.descriptionInput.value.trim()
+                };
+            }
+
+            async fetchBooks(searchParams = {}) {
+                try {
+                    const query = new URLSearchParams(searchParams).toString();
+                    const response = await fetch(`${this.API_URL}?${query}`);
+                    this.books = await response.json();
+                    this.displayBooks(this.books);
+                } catch (error) {
+                    console.error('Error fetching books:', error);
+                    alert('Failed to fetch books. Please try again.');
+                }
+            }
+
+            displayBooks(booksList) {
+                const bookList = document.getElementById('book-list');
+                bookList.innerHTML = booksList.map(book => `
+            <tr>
+                <td>${book.title}</td>
+                <td>${book.author}</td>
+                <td>${book.isbn}</td>
+                <td>${book.category}</td>
+                <td><span class="status-badge status-${book.status.toLowerCase()}">${book.status}</span></td>
+                <td>${book.stock}</td>
+                <td class="action-buttons">
+                    <button class="btn btn-edit" onclick="libraryApp.editBook('${book._id}')">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button class="btn btn-delete" onclick="libraryApp.deleteBook('${book._id}')">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                </td>
+            </tr>
+        `).join('');
+            }
+
+            async addBook(bookData) {
+                const response = await fetch(this.API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(bookData)
+                });
+                if (!response.ok) throw new Error('Failed to add book');
+            }
+
+            async updateBook(id, bookData) {
+                const response = await fetch(`${this.API_URL}/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(bookData)
+                });
+                if (!response.ok) throw new Error('Failed to update book');
+            }
+
+            async deleteBook(id) {
+                if (!confirm('Are you sure you want to delete this book?')) return;
+
+                try {
+                    const response = await fetch(`${this.API_URL}/${id}`, { method: 'DELETE' });
+                    if (!response.ok) throw new Error('Failed to delete book');
+                    this.fetchBooks();
+                } catch (error) {
+                    console.error('Error deleting book:', error);
+                    alert('Failed to delete book. Please try again.');
+                }
+            }
+
+            async filterBooks() {
+                const searchText = document.getElementById('search-bar2').value;
+                const categoryFilter = document.getElementById('category-filter').value;
+                const statusFilter = document.getElementById('status-filter').value;
+
+                const searchParams = {
+                    ...(searchText && { search: searchText }),
+                    ...(categoryFilter && { category: categoryFilter }),
+                    ...(statusFilter && { status: statusFilter })
+                };
+
+                this.fetchBooks(searchParams);
+            }
+
+            closeModal(modalId) {
+                document.getElementById(modalId).style.display = 'none';
+            }
+
+            editBook(id) {
+                const book = this.books.find(book => book._id === id);
+                if (book) {
+                    this.currentBookId = id;
+                    this.modalTitle.textContent = 'Edit Book';
+                    this.titleInput.value = book.title;
+                    this.authorInput.value = book.author;
+                    this.isbnInput.value = book.isbn;
+                    this.categoryInput.value = book.category;
+                    this.statusInput.value = book.status;
+                    this.stockInput.value = book.stock;
+                    this.descriptionInput.value = book.description || '';
+                    this.bookModal.style.display = 'block';
+                }
+            }
+        }
+
+        // Initialize the application
+        const libraryApp = new LibraryManagement();
+
+        // Global functions for inline event handlers (for compatibility)
+        function openAddBookModal() {
+            libraryApp.openAddBookModal();
+        }
+
+        function saveBook() {
+            libraryApp.bookForm.dispatchEvent(new Event('submit'));
+        }
+
+        function closeModal(modalId) {
+            libraryApp.closeModal(modalId);
+        }
+    </script>
+</body>
+
+</html>
